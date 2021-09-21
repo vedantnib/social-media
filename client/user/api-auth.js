@@ -15,3 +15,13 @@ const signin = async (user) => {
         console.log(error)
     }
 }
+
+const signout = async () => {
+    try {
+        let response = await fetch('/api/signout/', { method: 'GET' })
+        return await response.json()
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
