@@ -10,17 +10,44 @@ const create = async (req, res, next) => {
             message: "Successfully signed up!"
         })
     }
-    catch(error) {
+    catch (error) {
         return res.status(400).json({
             error: errorHandler.getErrorMessage(error)
         })
     }
- }
- 
-const list = (req, res) => { }
-const userByID = (req, res, next, id) => {}
-const read = (req, res) => {}
-const update = (req, res, next) => {}
-const remove = (req, res, next) => {}
+}
 
-export default {create, userByID, read, list, remove, update}
+const list = async (req, res) => {
+    try {
+        let users = await User.find().select('name email updated created')
+        res.json(users)
+    }
+    catch (error) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(error)
+        })
+    }
+}
+const userByID = async (req, res, next, id) => {
+    try {
+        let user = await User.findById(id)
+        if (!user) {
+            return res.status('400').json({
+                error: "User not found"
+            })
+        }
+        req.profile = user
+        next()
+    }
+    catch (error) {
+        return res.status('400').json({
+            error: "Could not retrieve user"
+        })
+    }
+}
+
+const read = (req, res) => { }
+const update = (req, res, next) => { }
+const remove = (req, res, next) => { }
+
+export default { create, userByID, read, list, remove, update }
