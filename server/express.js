@@ -7,6 +7,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/user.routes'
+import authRoutes from './routes/auth.routes'
 // modules for server side rendering
 //end
 
@@ -33,6 +34,7 @@ app.get('/',(req, res) => {
 });
 
 app.use('/', userRoutes);
+app.use('/', authRoutes);
 
 // Catch unauthorised errors
 
