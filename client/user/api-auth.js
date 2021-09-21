@@ -25,3 +25,5 @@ const signout = async () => {
         console.log(error)
     }
 }
+
+export {signin, signout}
