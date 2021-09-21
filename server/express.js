@@ -6,7 +6,7 @@ import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
 import Template from './../template'
-
+import userRoutes from './routes/user.routes'
 // modules for server side rendering
 //end
 
@@ -32,7 +32,7 @@ app.get('/',(req, res) => {
   res.status(200).send(Template());
 });
 
-
+app.use('/', userRoutes);
 
 // Catch unauthorised errors
 
