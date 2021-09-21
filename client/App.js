@@ -6,6 +6,7 @@ import theme from './theme'
 import { hot } from 'react-hot-loader'
 
 const App = () => {
+    console.log("Reached App.js")
     return (
         <BrowserRouter>
         <ThemeProvider theme = {theme}>
@@ -15,4 +16,4 @@ const App = () => {
     )
 }
 
-export default hot(module)(App);
+export default App;
